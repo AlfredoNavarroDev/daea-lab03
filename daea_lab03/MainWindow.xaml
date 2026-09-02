@@ -1,0 +1,115 @@
+<Window x:Class="daea_lab03.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Sistema de Reservas de Aulas" Height="640" Width="960"
+        WindowStartupLocation="CenterScreen">
+    <DockPanel>
+
+        <!-- Top bar -->
+        <Border DockPanel.Dock="Top" Background="{StaticResource BrandGradientBrush}" Padding="24,0">
+            <Grid Height="72">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Border Width="36" Height="36" CornerRadius="10" Background="#22FFFFFF" Margin="0,0,12,0">
+                        <TextBlock Text="&#xE787;" FontFamily="Segoe MDL2 Assets" FontSize="17"
+                                   Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="Reservas de Aulas" FontSize="16" FontWeight="Bold" Foreground="White" />
+                        <TextBlock x:Name="WelcomeText" FontSize="12" Foreground="#DFF7F3" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Menu bar (native WPF look — stays legible in every state) -->
+        <Border DockPanel.Dock="Top" Background="{StaticResource SurfaceBrush}" BorderBrush="{StaticResource BorderBrush2}" BorderThickness="0,0,0,1">
+            <Menu Padding="16,4" Background="Transparent">
+                <MenuItem Header="Aulas">
+                    <MenuItem Header="Ver aulas (DataTable)" Click="AulasDataTable_Click" />
+                    <MenuItem Header="Ver aulas (Objetos)" Click="AulasObjetos_Click" />
+                </MenuItem>
+                <MenuItem Header="Reservas">
+                    <MenuItem Header="Ver reservas (DataTable)" Click="ReservasDataTable_Click" />
+                    <MenuItem Header="Ver reservas (Objetos)" Click="ReservasObjetos_Click" />
+                    <MenuItem Header="Nueva reserva" Click="NuevaReserva_Click" />
+                </MenuItem>
+            </Menu>
+        </Border>
+
+        <!-- Home dashboard -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="32,28">
+                <TextBlock Text="Panel principal" FontSize="24" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}" />
+                <TextBlock Text="Elige una opción para gestionar aulas y reservas." FontSize="13"
+                           Foreground="{StaticResource TextSecondaryBrush}" Margin="0,4,0,24" />
+
+                <UniformGrid Columns="3" Rows="2">
+
+                    <Button Style="{StaticResource TileButtonStyle}" Margin="0,0,16,16" Click="AulasDataTable_Click">
+                        <StackPanel Margin="20">
+                            <Border Width="40" Height="40" CornerRadius="10" Background="{StaticResource PrimaryLightBrush}" HorizontalAlignment="Left">
+                                <TextBlock Text="&#xE8FD;" FontFamily="Segoe MDL2 Assets" FontSize="18"
+                                           Foreground="{StaticResource PrimaryDarkBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <TextBlock Text="Aulas (DataTable)" FontWeight="SemiBold" FontSize="15" Margin="0,14,0,4" />
+                            <TextBlock Text="Listado desconectado con SqlDataAdapter." FontSize="12"
+                                       Foreground="{StaticResource TextSecondaryBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource TileButtonStyle}" Margin="0,0,16,16" Click="AulasObjetos_Click">
+                        <StackPanel Margin="20">
+                            <Border Width="40" Height="40" CornerRadius="10" Background="{StaticResource PrimaryLightBrush}" HorizontalAlignment="Left">
+                                <TextBlock Text="&#xE721;" FontFamily="Segoe MDL2 Assets" FontSize="18"
+                                           Foreground="{StaticResource PrimaryDarkBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <TextBlock Text="Aulas (Objetos)" FontWeight="SemiBold" FontSize="15" Margin="0,14,0,4" />
+                            <TextBlock Text="Listado conectado, con buscador por nombre." FontSize="12"
+                                       Foreground="{StaticResource TextSecondaryBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource TileButtonStyle}" Margin="0,0,0,16" Click="NuevaReserva_Click">
+                        <StackPanel Margin="20">
+                            <Border Width="40" Height="40" CornerRadius="10" Background="#FFE8DA" HorizontalAlignment="Left">
+                                <TextBlock Text="&#xE710;" FontFamily="Segoe MDL2 Assets" FontSize="18"
+                                           Foreground="{StaticResource AccentDarkBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <TextBlock Text="Nueva Reserva" FontWeight="SemiBold" FontSize="15" Margin="0,14,0,4" />
+                            <TextBlock Text="Registra una reserva validando disponibilidad." FontSize="12"
+                                       Foreground="{StaticResource TextSecondaryBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource TileButtonStyle}" Margin="0,0,16,0" Click="ReservasDataTable_Click">
+                        <StackPanel Margin="20">
+                            <Border Width="40" Height="40" CornerRadius="10" Background="{StaticResource PrimaryLightBrush}" HorizontalAlignment="Left">
+                                <TextBlock Text="&#xE787;" FontFamily="Segoe MDL2 Assets" FontSize="18"
+                                           Foreground="{StaticResource PrimaryDarkBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <TextBlock Text="Reservas (DataTable)" FontWeight="SemiBold" FontSize="15" Margin="0,14,0,4" />
+                            <TextBlock Text="Listado desconectado con nombres de aula y usuario." FontSize="12"
+                                       Foreground="{StaticResource TextSecondaryBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource TileButtonStyle}" Margin="0,0,16,0" Click="ReservasObjetos_Click">
+                        <StackPanel Margin="20">
+                            <Border Width="40" Height="40" CornerRadius="10" Background="{StaticResource PrimaryLightBrush}" HorizontalAlignment="Left">
+                                <TextBlock Text="&#xE721;" FontFamily="Segoe MDL2 Assets" FontSize="18"
+                                           Foreground="{StaticResource PrimaryDarkBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <TextBlock Text="Reservas (Objetos)" FontWeight="SemiBold" FontSize="15" Margin="0,14,0,4" />
+                            <TextBlock Text="Listado conectado, con buscador por fecha." FontSize="12"
+                                       Foreground="{StaticResource TextSecondaryBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Button>
+
+                </UniformGrid>
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
+</Window>

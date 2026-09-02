@@ -1,0 +1,36 @@
+<UserControl x:Class="daea_lab03.Views.AulasDataTableView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:daea_lab03.ViewModels"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=vm:AulasDataTableViewModel}"
+             d:DesignHeight="450" d:DesignWidth="700">
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Aulas — Modo Desconectado (DataTable)" FontSize="16" FontWeight="Bold" Margin="0,0,0,8" />
+
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding Aulas}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding AulaId}" Width="60" />
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*" />
+                <DataGridTextColumn Header="Capacidad" Binding="{Binding Capacidad}" Width="100" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,8,0,0">
+            <Button Content="Refrescar" Command="{Binding CargarCommand}" Padding="10,4" Margin="0,0,6,0" />
+            <TextBlock Text="{Binding MensajeEstado}" VerticalAlignment="Center" Margin="12,0,0,0" TextWrapping="Wrap" />
+        </StackPanel>
+    </Grid>
+</UserControl>
